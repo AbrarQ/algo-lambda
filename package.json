@@ -1,0 +1,29 @@
+{
+  "name": "algo-lambda",
+  "version": "1.0.0",
+  "description": "Node.js API for swing point calculations",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc",
+    "deploy": "vercel --prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trading",
+    "swing-points",
+    "technical-analysis",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/node": "^3.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^20.4.5",
+    "typescript": "^5.1.6"
+  }
+}
