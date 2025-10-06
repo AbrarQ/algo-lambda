@@ -1,5 +1,10 @@
 import { calculateSwingPointsFromCandles } from './swingPointCalculator';
 
+// Helper function to remove timezone info from timestamps for Java compatibility
+const removeTimezoneFromTimestamp = (timestamp: string): string => {
+    return timestamp.replace(/(\.\d{3})?Z$/, '');
+};
+
 export const calculateDateRangeDynamic = (yearsBack: number) => {
     const today = new Date();
     const toDate = today.toISOString().split('T')[0]; // Today's date in YYYY-MM-DD format
@@ -31,7 +36,7 @@ const mockFetchHistoricalData = async (
     let basePrice = 100;
     
     while (currentDate <= endDate) {
-        const timestamp = currentDate.toISOString();
+        const timestamp = removeTimezoneFromTimestamp(currentDate.toISOString());
         const open = basePrice + (Math.random() - 0.5) * 10;
         const close = open + (Math.random() - 0.5) * 5;
         const high = Math.max(open, close) + Math.random() * 3;
@@ -199,16 +204,52 @@ export const createProcessedCompanyObject = (
         companyName,
         timeframe,
         swingPointsDay: swingPointsDay
-            ? swingPointsDay.map((sp: any) => ({ timestamp: sp.timestamp, price: sp.price, label: sp.label, time: sp.time, candle : sp.candle }))
+            ? swingPointsDay.map((sp: any) => ({ 
+                timestamp: removeTimezoneFromTimestamp(sp.timestamp), 
+                price: sp.price, 
+                label: sp.label, 
+                time: sp.time, 
+                candle: {
+                    ...sp.candle,
+                    timestamp: removeTimezoneFromTimestamp(sp.candle.timestamp)
+                }
+            }))
             : null,
         swingPoints4H: swingPoints4H
-            ? swingPoints4H.map((sp: any) => ({ timestamp: sp.timestamp, price: sp.price, label: sp.label, time: sp.time, candle : sp.candle }))
+            ? swingPoints4H.map((sp: any) => ({ 
+                timestamp: removeTimezoneFromTimestamp(sp.timestamp), 
+                price: sp.price, 
+                label: sp.label, 
+                time: sp.time, 
+                candle: {
+                    ...sp.candle,
+                    timestamp: removeTimezoneFromTimestamp(sp.candle.timestamp)
+                }
+            }))
             : null,
         swingPoints1H: swingPoints1H
-            ? swingPoints1H.map((sp: any) => ({ timestamp: sp.timestamp, price: sp.price, label: sp.label, time: sp.time, candle : sp.candle }))
+            ? swingPoints1H.map((sp: any) => ({ 
+                timestamp: removeTimezoneFromTimestamp(sp.timestamp), 
+                price: sp.price, 
+                label: sp.label, 
+                time: sp.time, 
+                candle: {
+                    ...sp.candle,
+                    timestamp: removeTimezoneFromTimestamp(sp.candle.timestamp)
+                }
+            }))
             : null,
         swingPoints15Min: swingPoints15Min
-            ? swingPoints15Min.map((sp: any) => ({ timestamp: sp.timestamp, price: sp.price, label: sp.label, time: sp.time, candle : sp.candle }))
+            ? swingPoints15Min.map((sp: any) => ({ 
+                timestamp: removeTimezoneFromTimestamp(sp.timestamp), 
+                price: sp.price, 
+                label: sp.label, 
+                time: sp.time, 
+                candle: {
+                    ...sp.candle,
+                    timestamp: removeTimezoneFromTimestamp(sp.candle.timestamp)
+                }
+            }))
             : null,
     };
 };
