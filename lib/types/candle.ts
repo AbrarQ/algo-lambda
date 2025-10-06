@@ -4,7 +4,18 @@ export interface Candle {
   high: number;
   low: number;
   close: number;
-  volume?: number;
+  volume: number;
+  openInterest: number;
+  ema?: number;
+  ema8?: number;
+  ema30?: number;
+  rsi?: number;
+  isHigherHigh?: boolean;
+  isHigherLow?: boolean;
+  isLowerHigh?: boolean;
+  isLowerLow?: boolean;
+  isSwingHigh?: boolean;
+  isSwingLow?: boolean;
 }
 
 export interface HistoricalDataResponse {

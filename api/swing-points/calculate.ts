@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
-        const { lookback = 5, instrumentKey, companyName, fromDate } = req.body;
+        const { lookback = 5, instrumentKey, companyName, fromDate, timeFrameSelection } = req.body;
 
         console.log('🎯 SWING POINTS API CALLED');
         console.log('📝 Request params:', { instrumentKey, companyName, fromDate, lookback });
@@ -27,10 +27,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const toDate = today.toISOString().split('T')[0];
 
         const selectedTimeframes = {
-            "15Min": true,
-            "1H": true,
-            "4H": true,
-            "1D": true,
+            "15Min": timeFrameSelection.min15,
+            "1H": timeFrameSelection.hour1,
+            "4H": timeFrameSelection.hour4,
+            "1D": timeFrameSelection.day1,
         };
 
         let processedCompany = null;

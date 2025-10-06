@@ -5,6 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "vercel dev",
+    "local": "ts-node dev-server.ts",
+    "build": "tsc --noEmit",
     "deploy": "vercel --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,11 +19,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/node": "^3.2.0"
+    "@vercel/node": "^3.2.0",
+    "axios": "^1.12.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^20.4.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.1.6"
   },
   "engines": {
