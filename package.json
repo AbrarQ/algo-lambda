@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vercel dev",
     "local": "ts-node dev-server.ts",
-    "build": "tsc --noEmit",
     "deploy": "vercel --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
